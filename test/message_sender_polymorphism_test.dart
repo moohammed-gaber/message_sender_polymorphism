@@ -1,4 +1,4 @@
-import 'package:message_sender_polymorphism/message_sender_polymorphism.dart';
+import 'package:message_sender_polymorphism/states.dart';
 import 'package:test/test.dart';
 
 void main() {

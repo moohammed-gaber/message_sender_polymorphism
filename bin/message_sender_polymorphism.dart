@@ -1,6 +1,8 @@
-import 'package:message_sender_polymorphism/message_sender_polymorphism.dart'
+import 'package:message_sender_polymorphism/factory.dart';
+import 'package:message_sender_polymorphism/states.dart'
     as message_sender_polymorphism;
-import 'package:message_sender_polymorphism/message_sender_polymorphism.dart';
+import 'package:message_sender_polymorphism/states.dart';
+import 'package:message_sender_polymorphism/messages.dart';
 
 // client code
 void main(List<String> arguments) {
@@ -16,14 +18,22 @@ void main(List<String> arguments) {
     'longitude': 32.0,
   };
 
+  final textMessageJson = {
+    'type': 'text',
+    'sendAt': '2021-01-01',
+    'text': 'fdfdsfdsfds',
+  };
+
   final message = MessageFactory.fromJson(voiceMessageJson);
   final message2 = MessageFactory.fromJson(locationMessageJson);
+  final message3 = MessageFactory.fromJson(textMessageJson);
   print(message is VoiceMessage);
   print(message is LocationMessage);
 
-
   message.send();
   message2.send();
+  message3.send();
+  // message2.context.;
 }
 
 void v2() {}
