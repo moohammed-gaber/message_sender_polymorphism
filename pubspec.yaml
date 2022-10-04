@@ -7,7 +7,6 @@ environment:
   sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
-  dartz: ^0.10.1
 
 #   path: ^1.8.0
 

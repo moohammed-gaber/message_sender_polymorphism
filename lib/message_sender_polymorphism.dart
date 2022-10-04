@@ -1,5 +1,3 @@
-// abstract class SendMessageFailure {}
-
 abstract class MessageSender<T extends Message> {
   Future<void> sendMessage(T message);
 }
