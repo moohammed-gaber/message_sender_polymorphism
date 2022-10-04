@@ -2,12 +2,11 @@ abstract class MessageSender<T extends Message> {
   Future<void> sendMessage(T message);
 }
 
-Future<void> ioTask() => Future.delayed(Duration(seconds: 5));
-
 class VoiceMessageSender implements MessageSender<VoiceMessage> {
   @override
   Future<void> sendMessage(VoiceMessage message) async {
     final duration = message.duration;
+
     print('VoiceMessageSender sent a voice message with duration $duration');
   }
 }
@@ -17,23 +16,28 @@ class LocationMessageSender implements MessageSender<LocationMessage> {
   Future<void> sendMessage(LocationMessage message) async {
     final longitude = message.longitude;
     final latitude = message.latitude;
-    print('LocationMessageSender sent a location message with longitude $longitude and latitude $latitude');
+
+    print(
+        'LocationMessageSender sent a location message with longitude $longitude and latitude $latitude');
   }
 }
 
-abstract class Message<T> {
+abstract class Message {
+  Message(this.sendAt);
+
   final DateTime sendAt;
 
-  Message(this.sendAt);
   Message.fromJson(Map<String, dynamic> json)
       : sendAt = DateTime.parse(json['sendAt']);
+
   Future<void> send();
 }
 
-class VoiceMessage extends Message<VoiceMessage> {
+class VoiceMessage extends Message {
+  VoiceMessage(this.duration, DateTime sendAt) : super(sendAt);
+
   final String duration;
 
-  VoiceMessage(this.duration, DateTime sendAt) : super(sendAt);
   VoiceMessage.fromJson(Map<String, dynamic> json)
       : duration = json['duration'],
         super.fromJson(json);
@@ -44,7 +48,7 @@ class VoiceMessage extends Message<VoiceMessage> {
   }
 }
 
-class LocationMessage extends Message<LocationMessage> {
+class LocationMessage extends Message {
   final double latitude;
   final double longitude;
 

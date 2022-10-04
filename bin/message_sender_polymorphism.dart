@@ -18,6 +18,10 @@ void main(List<String> arguments) {
 
   final message = MessageFactory.fromJson(voiceMessageJson);
   final message2 = MessageFactory.fromJson(locationMessageJson);
+  print(message is VoiceMessage);
+  print(message is LocationMessage);
+
+
   message.send();
   message2.send();
 }
