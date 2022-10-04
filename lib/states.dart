@@ -3,11 +3,10 @@ import 'package:message_sender_polymorphism/senders.dart';
 
 class MessageContext {
   MessageContext() {
-    messageState = MessageSendingState();
+    messageState = MessageIdleState();
   }
 
   late MessageState messageState;
-// set state
   void setState(MessageState state) {
     messageState = state;
   }
@@ -15,9 +14,8 @@ class MessageContext {
 
 abstract class MessageState {}
 
-class MessageSendingState extends MessageState {
+class MessageSendingState extends MessageState {}
 
-
-}
+class MessageIdleState extends MessageState {}
 
 class MessageSentState extends MessageState {}

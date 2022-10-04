@@ -29,11 +29,13 @@ void main(List<String> arguments) {
   final message3 = MessageFactory.fromJson(textMessageJson);
   print(message is VoiceMessage);
   print(message is LocationMessage);
-
+/*
   message.send();
   message2.send();
   message3.send();
-  // message2.context.;
-}
+*/
+  print(message2.context.messageState);
 
-void v2() {}
+  message2.execute().then((value) => print(message2.context.messageState));
+  print(message2.context.messageState);
+}

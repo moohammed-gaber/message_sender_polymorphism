@@ -12,6 +12,13 @@ abstract class Message {
       : sendAt = DateTime.parse(json['sendAt']);
 
   Future<void> send();
+  Future<void> execute() async {
+    context.setState(MessageSendingState());
+    await send();
+    context.setState(MessageSentState());
+  }
+
+
 }
 
 class TextMessage extends Message {
@@ -24,9 +31,8 @@ class TextMessage extends Message {
 
   @override
   Future<void> send() async {
-    context.setState(MessageSendingState());
-    await TextMessageSender().sendMessage(this);
-    context.setState(MessageSentState());
+
+    return TextMessageSender().sendMessage(this);
   }
 }
 
@@ -41,9 +47,7 @@ class VoiceMessage extends Message {
 
   @override
   Future<void> send() async {
-    context.setState(MessageSendingState());
-    await VoiceMessageSender().sendMessage(this);
-    context.setState(MessageSentState());
+    return VoiceMessageSender().sendMessage(this);
   }
 }
 
@@ -60,8 +64,6 @@ class LocationMessage extends Message {
 
   @override
   Future<void> send() async {
-    context.setState(MessageSendingState());
-    await LocationMessageSender().sendMessage(this);
-    context.setState(MessageSentState());
+    return LocationMessageSender().sendMessage(this);
   }
 }
