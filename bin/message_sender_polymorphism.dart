@@ -14,7 +14,9 @@ void main(List<String> arguments) {
   };
 
   final message = MessageFactory.fromJson(voiceMessageJson);
+  final message2 = MessageFactory.fromJson(locationMessageJson);
   message.send();
+  message2.send();
 }
 
 
