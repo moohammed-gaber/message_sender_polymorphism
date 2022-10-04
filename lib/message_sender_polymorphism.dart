@@ -7,22 +7,17 @@ Future<void> ioTask() => Future.delayed(Duration(seconds: 5));
 class VoiceMessageSender implements MessageSender<VoiceMessage> {
   @override
   Future<void> sendMessage(VoiceMessage message) async {
-    print('VoiceMessageSender Start');
-
     final duration = message.duration;
-    await ioTask();
-    print('VoiceMessageSender end');
+    print('VoiceMessageSender sent a voice message with duration $duration');
   }
 }
 
 class LocationMessageSender implements MessageSender<LocationMessage> {
   @override
   Future<void> sendMessage(LocationMessage message) async {
-    print('LocationMessageSender end');
-
     final longitude = message.longitude;
-    await ioTask();
-    print('LocationMessageSender start');
+    final latitude = message.latitude;
+    print('LocationMessageSender sent a location message with longitude $longitude and latitude $latitude');
   }
 }
 
