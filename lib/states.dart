@@ -14,7 +14,12 @@ class MessageContext {
 
 abstract class MessageState {}
 
-class MessageSendingState extends MessageState {}
+class MessageSendingState extends MessageState {
+  @override
+  String toString() {
+    return 'MessageSendingState';
+  }
+}
 
 class MessageIdleState extends MessageState {}
 

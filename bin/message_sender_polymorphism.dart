@@ -35,7 +35,6 @@ void main(List<String> arguments) {
   message3.send();
 */
   print(message2.context.messageState);
-
   message2.execute().then((value) => print(message2.context.messageState));
   print(message2.context.messageState);
 }

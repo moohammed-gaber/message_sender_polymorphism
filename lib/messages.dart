@@ -10,15 +10,16 @@ abstract class Message {
 
   Message.fromJson(Map<String, dynamic> json)
       : sendAt = DateTime.parse(json['sendAt']);
-
   Future<void> send();
+
   Future<void> execute() async {
+/*
+    if(context.)
+*/
     context.setState(MessageSendingState());
     await send();
     context.setState(MessageSentState());
   }
-
-
 }
 
 class TextMessage extends Message {
@@ -31,7 +32,6 @@ class TextMessage extends Message {
 
   @override
   Future<void> send() async {
-
     return TextMessageSender().sendMessage(this);
   }
 }
