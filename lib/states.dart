@@ -5,11 +5,11 @@ class MessageContext {
   MessageContext() {
     messageState = MessageIdleState();
   }
-
-  late MessageState messageState;
   void setState(MessageState state) {
     messageState = state;
   }
+
+  late MessageState messageState;
 }
 
 abstract class MessageState {}
